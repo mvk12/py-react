@@ -1,10 +1,18 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './index.css'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import ViewMain from './components/ViewMain';
+import ViewCreate from './components/ViewCreate';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter basename='/py-react'>
+      <Routes>
+        <Route index path="" exact element={<ViewMain />} />
+        <Route path="/create" element={<ViewCreate />} />
+        <Route path="/items/:publicId" element={<ViewCreate />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
-)
+);
