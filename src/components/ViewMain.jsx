@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const ViewMain = () => {
   return (<>
-    <p>Este es el principal</p>
+    <p>Pantalla de inicio</p>
     <Link to="/create">Crear nuevo</Link>
   </>);
 };
