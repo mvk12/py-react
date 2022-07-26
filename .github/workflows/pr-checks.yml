@@ -2,16 +2,20 @@ name: Check PR
 
 on:
   pull_request:
-    # types: [closed]
+    types: [closed]
 
 jobs:
   checks-pr:
-    # if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Checks
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
           echo PR "#${{ github.event.number }}"
-          echo $GITHUB_CONTEXT
+          echo Head Ref "#${{ github.head_ref }}"
+          echo Base Ref "#${{ github.base_ref }}"
+      - name: Create a tag
+        uses: rickstaa/action-create-tag@v1
+        with:
+          tag: "version_pr_${{ github.event.number }}"
