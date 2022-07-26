@@ -1,0 +1,17 @@
+name: Check PR
+
+on:
+  pull_request:
+    # types: [closed]
+
+jobs:
+  checks-pr:
+    # if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checks
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
+          echo PR "#${{ github.event.number }}"
+          echo $GITHUB_CONTEXT
